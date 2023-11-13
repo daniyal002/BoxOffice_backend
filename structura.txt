@@ -1,0 +1,39 @@
+Таблица "Кассы" (Cashes):
+    Идентификатор кассы (cash_id, SERIAL, PRIMARY KEY)
+    Название кассы (name)
+    Текущий баланс кассы (balance) //(баланс изменяется по расходам и приходам)
+
+Таблица "Приходы" (Incomes):
+    Идентификатор операции (income_id, SERIAL, PRIMARY KEY)
+    Идентификатор кассы (cash_id, FOREIGN KEY)
+    Сумма прихода (amount)
+    Пользователь который принес деньги (employee_id, FOREIGN KEY )
+    Дата и время прихода (timestamp)
+
+Таблица "Расходы" (Expenses):
+    Идентификатор операции (expense_id, SERIAL, PRIMARY KEY)
+    Идентификатор кассы (cash_id, FOREIGN KEY)
+    ФИО заявителя (employee_id, FOREIGN KEY)
+    Основание (reason)
+    Сумма расхода (amount)
+    Дата и время расхода (timestamp)
+    Согласовано (status): (Статусы: ("Согласовано","Отколонено","На согласовании", "Выдано"))
+
+Таблица "Журнал записей" (Logs):
+    Идентификатор записи (logs_id, SERIAL, PRIMARY KEY)
+    Тип операции (приход/расход) (operation)
+    Дата и время операции (data_time_operation)
+    Связанный идентификатор кассы (cash_id, FOREIGN KEY)
+    Связанный идентификатор операции (income_id/expense_id, FOREIGN KEY)
+    Сумма операции (amount)
+
+Таблица "Сотрудник" (Employee):
+    Идентификатор заявителя (employee_id, SERIAL, PRIMARY KEY)
+    ФИО заявителя (full_name)
+
+Таблица "Пользователей" (Employee):
+    Идентификатор пользователей (user_id, SERIAL, PRIMARY KEY)
+    Логин пользователя (login)
+    Пароль пользователя (password)
+    Роль (role)
+    Сотрудник пользователя (employee_id, FOREIGN KEY )
